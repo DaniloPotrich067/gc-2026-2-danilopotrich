@@ -83,8 +83,8 @@ function verificarDisponibilidade() {
   }
 }
 
-function renderizar() {
-  const consultas = carregar().sort((a, b) =>
+function renderizar(consultas = carregar()) {
+  consultas.sort((a, b) =>
     (a.data + a.hora).localeCompare(b.data + b.hora)
   );
 
@@ -108,6 +108,17 @@ function renderizar() {
 
     lista.appendChild(linha);
   }
+}
+
+function filtraProfissional() {
+  const profissionalSelecionado =
+    document.getElementById("profissional").value;
+
+  const consultas = carregar().filter(
+    (c) => c.profissional === profissionalSelecionado
+  );
+
+  renderizar(consultas);
 }
 
 // Verifica disponibilidade sempre que um dos campos mudar
