@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda de Consultas</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+    h1 { font-size: 1.5rem; }
+    form { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-bottom: 1.5rem; }
+    label { display: flex; flex-direction: column; font-size: .9rem; gap: .25rem; }
+    input, select, button { font: inherit; padding: .4rem; }
+    button { grid-column: 1 / -1; cursor: pointer; }
+    #mensagem { min-height: 1.5rem; margin-bottom: 1rem; font-weight: 600; }
+    #aviso { background: #fff6d8; border: 1px solid #e6cf7a; padding: .5rem .7rem; font-size: .85rem; margin-bottom: 1rem; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: .4rem; border-bottom: 1px solid #ddd; }
+    .vazio { color: #777; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Agenda de Consultas</h1>
+
+  <form id="formulario">
+    <label>Paciente
+      <input type="text" id="paciente" required>
+    </label>
+    <label>Profissional
+      <select id="profissional" required>
+        <option value="">Selecione</option>
+        <option>Dra. Helena</option>
+        <option>Dr. Marcos</option>
+        <option>Dra. Priscila</option>
+      </select>
+    </label>
+    <label>Data
+      <input type="date" id="data" required>
+    </label>
+    <label>Horário
+      <input type="time" id="hora" step="1800" required>
+    </label>
+    <button type="submit">Agendar</button>
+  </form>
+
+  <p id="aviso" hidden>
+    Este navegador não deixa a página guardar dados quando o arquivo é aberto direto do disco. A
+    agenda funciona normalmente, mas as consultas somem ao recarregar.
+  </p>
+
+  <div id="mensagem"></div>
+
+  <table>
+    <thead>
+      <tr><th>Data</th><th>Horário</th><th>Profissional</th><th>Paciente</th></tr>
+    </thead>
+    <tbody id="lista"></tbody>
+  </table>
+
+  <script src="agenda.js"></script>
+</body>
+</html>
